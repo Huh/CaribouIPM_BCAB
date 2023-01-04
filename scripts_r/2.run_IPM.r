@@ -1,4 +1,4 @@
-## ----render, eval=FALSE,include=FALSE-----------------------------------------------------------------------------------------------------------------------
+## ----render, eval=FALSE,include=FALSE------------------------------------------------------------
 ## rmarkdown::render(here::here("jags", 'run_IPM.Rmd'),
 ##                   output_file =  "README.md")
 ## 
@@ -6,7 +6,7 @@
 ##                   output =  here::here("scripts_r", '2.run_IPM.r'))
 
 
-## ----Load packages and data, results='hide', message=FALSE, warning=FALSE-----------------------------------------------------------------------------------
+## ----Load packages and data, results='hide', message=FALSE, warning=FALSE------------------------
 library(MCMCvis)
 library(tidybayes)
 library(ggmcmc)
@@ -51,7 +51,7 @@ sexratio_summary <-  read.csv(here::here("data/clean/sexratio_summary.csv"))
 #trt$applied[is.na(trt$applied)] <- 0
 
 
-## ----Prep data for IPM, results='hide', message=FALSE, warning=FALSE----------------------------------------------------------------------------------------
+## ----Prep data for IPM, results='hide', message=FALSE, warning=FALSE-----------------------------
 
 # Herds and herd number
 herds <- unique(hd$herd)
@@ -414,7 +414,7 @@ startmean <- first_per_herd$first_yr
 nyr <- rest_yr
 
 
-## ----Gather data inputs in a list, results='hide', message=FALSE, warning=FALSE-----------------------------------------------------------------------------
+## ----Gather data inputs in a list, results='hide', message=FALSE, warning=FALSE------------------
 ipm_dat <- list(
 	nherd = nherd,
 	nyr = nyr,
@@ -509,7 +509,7 @@ model_parms <- c(
 )
 
 
-## ----Run IPM, results='hide', message=FALSE, warning=FALSE, eval=FALSE--------------------------------------------------------------------------------------
+## ----Run IPM, results='hide', message=FALSE, warning=FALSE, eval=FALSE---------------------------
 ## nth <- 50
 ## nbu <- 100000
 ## nch <- 3
@@ -529,7 +529,7 @@ model_parms <- c(
 ## 	seed=2022)
 
 
-## ----Save outputs, results='hide', message=FALSE, warning=FALSE, eval=FALSE---------------------------------------------------------------------------------
+## ----Save outputs, results='hide', message=FALSE, warning=FALSE, eval=FALSE----------------------
 ## #mcmcplots::mcmcplot(out$samples, par = c("S", "R", "totNMF"))
 ## saveRDS(out, file = here::here("jags/output/BCAB_CaribouIPM_posteriors.rds"))
 

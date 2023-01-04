@@ -1,7 +1,7 @@
 BC AB Caribou IPM run
 ================
 Clayton T. Lamb
-06 November, 2022
+29 December, 2022
 
 \##simulate future by subtracting effects from LP instead of averaging R
 and S over previous untreated years?
