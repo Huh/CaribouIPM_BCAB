@@ -1,10 +1,10 @@
 model{
 
-	#  Overall informative intercepts for survival and recreuitment
-	meanS ~ dnorm(0.85, 100)T(0,1)
-	muS <- logit(meanS)
-	meanR ~ dnorm(0.15, 100)T(0,1)
-	muR <- logit(meanR)
+	#  Overall informative intercepts for survival and recruitment
+	meanS <- logit(0.85)
+	muS ~ dnorm(meanS, 100)
+	meanR <- logit(0.15)
+	muR ~ dnorm(meanR, 100)
 	
 	#  Independent random effects for:
 	#    Time (year, per demography group) and
@@ -13,10 +13,10 @@ model{
 	##if still convergence issues, replace with Gamma (JN)
 	# Random effect for year per demography group
 	for(dg in 1:ndemog_grp){	
-		surv_tau_yr_dg[dg] <- 1/(surv_sd_yr_dg[dg]^2)
-		surv_sd_yr_dg[dg] ~ dunif(0.1, 20)
-		recruit_tau_yr_dg[dg] <- 1/(recruit_sd_yr_dg[dg]^2)
-		recruit_sd_yr_dg[dg] ~ dunif(0.1, 20)
+		surv_tau_yr_dg[dg] ~ dgamma(0.01, 0.01)
+		surv_sd_yr_dg[dg] <- sqrt(1/surv_tau_yr_dg[dg])
+		recruit_tau_yr_dg[dg] ~ dgamma(0.01, 0.01)
+		recruit_sd_yr_dg[dg] <- sqrt(1/recruit_tau_yr_dg[dg])
 		
 		for(yr in 1:nyr){
 			surv_yr_dg[yr, dg] ~ dnorm(0, surv_tau_yr_dg[dg])T(-10,10) ##constrain values between 0-1
